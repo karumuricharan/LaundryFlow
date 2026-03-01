@@ -1,147 +1,132 @@
-LaundryFlow – Smart Laundry Management System
-Project Overview
+# LaundryFlow  
+## Smart Laundry Management System
 
-LaundryFlow is a web-based Smart Laundry Management System designed to streamline laundry service operations in a hostel or university environment. The system provides separate interfaces for students and administrators, enabling efficient order placement, complaint handling, feedback collection, and detergent stock management.
+---
 
-This project is built using front-end technologies (HTML, CSS, and JavaScript) and runs entirely in the browser without requiring a backend server.
+## 1. Project Overview
 
-Objectives
+LaundryFlow is a web-based Smart Laundry Management System developed to streamline laundry services in hostel or university environments.  
 
-To simplify the process of placing laundry orders for students.
+The system provides separate dashboards for students and administrators, enabling structured order placement, complaint management, feedback handling, and detergent stock monitoring.
 
-To provide administrators with tools to manage orders and stock efficiently.
+This application is built using front-end technologies and runs completely in the browser.
 
-To maintain transparency in order status tracking.
+---
 
-To digitally manage complaints and feedback.
+## 2. Objectives
 
-To simulate real-time stock deduction for detergents.
+- Simplify laundry order placement for students  
+- Provide structured order monitoring for administrators  
+- Digitally manage complaints and feedback  
+- Maintain detergent stock visibility  
+- Demonstrate front-end application workflow  
 
-Features
-1. Student Module
+---
 
-Student login interface
+## 3. Key Features
 
-Place laundry orders
+### 3.1 Student Module
 
-Select wash type (Gentle, Daily, Hard)
+- Student login interface  
+- Place laundry orders  
+- Select wash type (Gentle, Daily, Hard)  
+- Choose detergent type  
+- View order status (Pending, Processing, Completed)  
+- Submit complaints  
+- Provide feedback  
 
-Choose detergent type (Ariel, Tide, Surf Excel)
+---
 
-View order status (Pending, Processing, Completed)
+### 3.2 Admin Module
 
-File complaints
+- Admin login interface  
+- View all student orders  
+- Monitor complaints  
+- Review feedback  
+- Track detergent stock  
+- Increase or decrease stock manually  
 
-Submit feedback
+---
 
-2. Admin Module
+### 3.3 Stock Management
 
-Admin login interface
+- Real-time stock display  
+- Automatic stock reduction when order is placed  
+- Low stock indicator  
+- Admin-controlled stock update  
 
-View all laundry orders
+---
 
-View complaints submitted by students
+## 4. Technology Stack
 
-View student feedback
+| Layer        | Technology Used |
+|-------------|-----------------|
+| Structure   | HTML5           |
+| Styling     | CSS3            |
+| Logic       | JavaScript      |
 
-Monitor detergent stock levels
+No external frameworks or backend services are used.
 
-Manage stock (increase/decrease inventory)
+---
 
-3. Stock Management
+## 5. System Architecture
 
-Real-time detergent stock display
+This project follows a **client-side architecture**:
 
-Automatic stock reduction when an order is placed
+- HTML for structure  
+- CSS for presentation  
+- JavaScript for application logic  
+- Data stored in JavaScript arrays (temporary memory)
 
-Low stock indication
+Note: Data resets when the browser is refreshed.
 
-Admin-controlled stock updates
+---
 
-Technology Stack
+## 6. How to Run the Project
 
-HTML5
+1. Download or clone the repository  
+2. Open the project folder  
+3. Open `index.html` in a web browser  
+4. The system will load automatically  
 
-CSS3
+No server configuration is required.
 
-JavaScript (Vanilla JS)
+---
 
-No external frameworks or backend technologies are used.
+## 7. Limitations
 
-System Architecture
+- No real authentication system  
+- No database integration  
+- No persistent data storage  
+- No encryption or security validation  
+- Intended for academic demonstration purposes  
 
-This project follows a client-side architecture:
+---
 
-HTML for structure
+## 8. Future Enhancements
 
-CSS for styling and layout
+- Backend integration (Node.js / PHP / Django)  
+- Database connectivity (MySQL / MongoDB)  
+- Secure authentication system  
+- Payment integration  
+- Notification system  
+- Fully responsive mobile version  
 
-JavaScript for logic, data handling, and page navigation
+---
 
-Data is stored temporarily in JavaScript arrays (in-memory storage)
+## 9. Use Case
 
-Since there is no database integration, all data resets when the page is refreshed.
+Suitable for:
 
-How to Run the Project
+- University hostel laundry systems  
+- Small-scale laundry service management  
+- Academic web development projects  
+- Software design demonstrations  
 
-Download or clone the repository.
+---
 
-Open the project folder.
+## 10. Author
 
-Open index.html in any modern web browser (Chrome, Edge, Firefox).
+Developed as part of academic coursework in Software Engineering / Web Technologies.
 
-The system will load directly in the browser.
-
-No server setup is required.
-
-Default Behavior
-
-Login is simulated (no real authentication).
-
-Sample orders, complaints, and feedback are preloaded.
-
-All operations are handled dynamically using JavaScript.
-
-Limitations
-
-No real authentication system.
-
-No database connectivity.
-
-Data is not persistent after page refresh.
-
-No role-based security validation.
-
-Designed only for demonstration or academic purposes.
-
-Future Enhancements
-
-Integration with a backend (Node.js / PHP / Django)
-
-Database support (MySQL / MongoDB)
-
-Real authentication with encrypted passwords
-
-Order filtering and sorting options
-
-SMS or email notifications
-
-Payment gateway integration
-
-Mobile responsive optimization
-
-Use Case
-
-This system is suitable for:
-
-University hostel laundry management
-
-Small-scale laundry businesses
-
-Academic demonstrations of web application design
-
-Software Development and Design coursework projects
-
-Author
-
-Project developed as part of academic coursework in Software Engineering.
+---
