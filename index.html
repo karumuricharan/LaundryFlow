@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LaundryFlow - Smart Laundry Management System</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  padding: 20px;
+}
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-shadow: 0 15px 35px rgba(33, 150, 243, 0.15);
+  text-align: center;
+  border: 1px solid #e1f5fe;
+}
+.system-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0277bd;
+  margin-bottom: 8px;
+}
+.system-subtitle {
+  font-size: 16px;
+  color: #546e7a;
+  margin-bottom: 35px;
+  font-weight: 500;
+}
+.welcome-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #01579b;
+  margin-bottom: 25px;
+}
+.login-instruction {
+  font-size: 14px;
+  color: #546e7a;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+.role-selector {
+  display: flex;
+  background: #e1f5fe;
+  border-radius: 12px;
+  padding: 6px;
+  margin-bottom: 25px;
+}
+.role-option {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  color: #0277bd;
+}
+.role-option.active {
+  background: white;
+  box-shadow: 0 2px 8px rgba(2, 119, 189, 0.2);
+  color: #01579b;
+  font-weight: 600;
+}
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #0277bd;
+  font-size: 14px;
+}
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #b3e5fc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s;
+  background: #f1f8ff;
+}
+.form-input:focus {
+  border-color: #0288d1;
+  background: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 136, 209, 0.1);
+}
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #0288d1, #01579b);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+.login-btn:hover {
+  background: linear-gradient(135deg, #0277bd, #014578);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 119, 189, 0.3);
+}
+.vtop-note {
+  font-size: 13px;
+  color: #546e7a;
+  margin-top: 25px;
+  text-align: center;
+  font-style: italic;
+}
+.copyright {
+  font-size: 13px;
+  color: rgba(2, 119, 189, 0.7);
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Rest of the system styles */
+.container {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.1);
+  border: 1px solid #e1f5fe;
+}
+header {
+  background: linear-gradient(135deg, #0288d1, #01579b);
+  color: white;
+  padding: 18px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(2, 119, 189, 0.2);
+}
+h2 {
+  text-align: center;
+  color: #01579b;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+input, select, textarea, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #b3e5fc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s;
+  background: #f1f8ff;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #0288d1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(2, 136, 209, 0.2);
+  background: white;
+}
+button {
+  background: linear-gradient(135deg, #0288d1, #01579b);
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+button:hover {
+  background: linear-gradient(135deg, #0277bd, #014578);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(2, 119, 189, 0.2);
+}
+button.secondary {
+  background: #e1f5fe;
+  color: #01579b;
+}
+button.secondary:hover {
+  background: #b3e5fc;
+}
+.hidden { 
+  display: none; 
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+.card {
+  background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #81d4fa;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #01579b;
+}
+.card:hover {
+  background: linear-gradient(135deg, #b3e5fc, #81d4fa);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(2, 119, 189, 0.15);
+}
+.order-list {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  border: 1px solid #e1f5fe;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.order-item, .complaint-item, .feedback-item {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #0288d1;
+  box-shadow: 0 2px 4px rgba(2, 119, 189, 0.05);
+}
+.order-item.pending {
+  border-left-color: #ff9800;
+}
+.order-item.completed {
+  border-left-color: #4caf50;
+}
+
+.stock-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+.stock-item {
+  background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #81d4fa;
+  box-shadow: 0 2px 4px rgba(2, 119, 189, 0.1);
+}
+.stock-name {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #01579b;
+  font-size: 16px;
+}
+.stock-amount {
+  font-size: 24px;
+  color: #0288d1;
+  font-weight: 700;
+  margin: 10px 0;
+}
+.stock-unit {
+  font-size: 12px;
+  color: #546e7a;
+  margin-top: 5px;
+}
+.stock-low {
+  color: #f44336;
+  animation: pulse 1.5s infinite;
+}
+.stock-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.stock-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.stock-decrease {
+  background: #ffcdd2;
+  color: #c62828;
+}
+.stock-decrease:hover {
+  background: #ef9a9a;
+}
+.stock-increase {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+.stock-increase:hover {
+  background: #a5d6a7;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.status-pending {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.status-completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+.status-processing {
+  background: #e1f5fe;
+  color: #0277bd;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #01579b;
+}
+
+.stock-management-header {
+  text-align: center;
+  color: #01579b;
+  margin: 15px 0;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<!-- LOGIN PAGE -->
+<div class="login-container" id="loginPage">
+  <div class="login-card">
+    <h1 class="system-title">LaundryFlow</h1>
+    <p class="system-subtitle">Smart Laundry Management System</p>
+    
+    <div class="welcome-text">Welcome Back</div>
+    <p class="login-instruction">Select your login type and enter credentials</p>
+    
+    <div class="role-selector">
+      <div class="role-option active" onclick="selectRole('student')">Student Login</div>
+      <div class="role-option" onclick="selectRole('admin')">Admin Login</div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-input" id="username" placeholder="Enter your username" required>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
+    </div>
+    
+    <p class="vtop-note">Use your VTOP credentials to login.</p>
+    
+    <button class="login-btn" onclick="login()">Login as Student</button>
+    
+    <p class="copyright">LaundryFlow © 2025</p>
+  </div>
+</div>
+
+<!-- STUDENT DASHBOARD -->
+<div class="container hidden" id="studentDashboard">
+  <header>Student Dashboard</header>
+  
+  <h2>Welcome, Student</h2>
+  
+  <div class="dashboard">
+    <div class="card" onclick="showPage('orderPage')">
+      <div>🧺</div>
+      <div>Place Order</div>
+    </div>
+    <div class="card" onclick="showPage('complaintPage')">
+      <div>⚠️</div>
+      <div>File Complaint</div>
+    </div>
+    <div class="card" onclick="showPage('feedbackPage')">
+      <div>💬</div>
+      <div>Give Feedback</div>
+    </div>
+    <div class="card" onclick="showPage('statusPage')">
+      <div>📋</div>
+      <div>View Status</div>
+    </div>
+  </div>
+  
+  <button class="secondary" onclick="logout()">Logout</button>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="container hidden" id="adminDashboard">
+  <header>Admin Dashboard</header>
+  
+  <h2>Laundry Management</h2>
+  
+  <div class="stock-management-header">Current Detergent Stock</div>
+  
+  <div class="stock-container">
+    <div class="stock-item">
+      <div class="stock-name">Ariel</div>
+      <div class="stock-amount" id="arielStock">15</div>
+      <div class="stock-unit">units</div>
+    </div>
+    <div class="stock-item">
+      <div class="stock-name">Tide</div>
+      <div class="stock-amount" id="tideStock">8</div>
+      <div class="stock-unit">units</div>
+    </div>
+    <div class="stock-item">
+      <div class="stock-name">Surf Excel</div>
+      <div class="stock-amount" id="surfStock">22</div>
+      <div class="stock-unit">units</div>
+    </div>
+  </div>
+  
+  <div class="dashboard">
+    <div class="card" onclick="showPage('adminOrdersPage')">
+      <div>🧾</div>
+      <div>View Orders</div>
+    </div>
+    <div class="card" onclick="showPage('adminComplaintsPage')">
+      <div>📩</div>
+      <div>Complaints</div>
+    </div>
+    <div class="card" onclick="showPage('adminFeedbackPage')">
+      <div>💬</div>
+      <div>Feedback</div>
+    </div>
+    <div class="card" onclick="showPage('stockManagementPage')">
+      <div>📦</div>
+      <div>Manage Stock</div>
+    </div>
+  </div>
+  
+  <button class="secondary" onclick="logout()">Logout</button>
+</div>
+
+<!-- ORDER PAGE -->
+<div class="container hidden" id="orderPage">
+  <header>Place Laundry Order</header>
+  
+  <div class="form-group">
+    <label for="orderName">Your Name</label>
+    <input type="text" id="orderName" placeholder="Enter your name" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="roomNumber">Room Number</label>
+    <input type="text" id="roomNumber" placeholder="Enter room number" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="clothesCount">Number of Clothes</label>
+    <input type="number" id="clothesCount" placeholder="Enter number of clothes" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="washType">Wash Type</label>
+    <select id="washType">
+      <option>Gentle Wash</option>
+      <option>Daily Wash</option>
+      <option>Hard Wash</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="detergentType">Detergent Type</label>
+    <select id="detergentType">
+      <option>Ariel</option>
+      <option>Tide</option>
+      <option>Surf Excel</option>
+    </select>
+  </div>
+  
+  <button onclick="placeOrder()">Submit Order</button>
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<!-- COMPLAINT PAGE -->
+<div class="container hidden" id="complaintPage">
+  <header>File a Complaint</header>
+  
+  <div class="form-group">
+    <label for="complaintOrderId">Order ID (Optional)</label>
+    <input type="text" id="complaintOrderId" placeholder="Enter order ID if applicable">
+  </div>
+  
+  <div class="form-group">
+    <label for="complaintText">Describe Your Issue</label>
+    <textarea rows="4" id="complaintText" placeholder="Please describe the issue you're experiencing..."></textarea>
+  </div>
+  
+  <button onclick="submitComplaint()">Submit Complaint</button>
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<!-- FEEDBACK PAGE -->
+<div class="container hidden" id="feedbackPage">
+  <header>Give Feedback</header>
+  
+  <div class="form-group">
+    <label for="feedbackText">Share Your Experience</label>
+    <textarea rows="4" id="feedbackText" placeholder="We'd love to hear about your experience with our service..."></textarea>
+  </div>
+  
+  <button onclick="submitFeedback()">Submit Feedback</button>
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<!-- STATUS PAGE -->
+<div class="container hidden" id="statusPage">
+  <header>Order Status</header>
+  
+  <h2>Your Orders</h2>
+  
+  <div id="orderList" class="order-list">
+    <!-- Orders will be displayed here -->
+  </div>
+  
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<!-- ADMIN PAGES -->
+<div class="container hidden" id="adminOrdersPage">
+  <header>All Orders</header>
+  
+  <div id="adminOrderList" class="order-list">
+    <!-- Orders will be displayed here -->
+  </div>
+  
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<div class="container hidden" id="adminComplaintsPage">
+  <header>All Complaints</header>
+  
+  <div id="adminComplaintList" class="order-list">
+    <!-- Complaints will be displayed here -->
+  </div>
+  
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<div class="container hidden" id="adminFeedbackPage">
+  <header>All Feedback</header>
+  
+  <div id="adminFeedbackList" class="order-list">
+    <!-- Feedback will be displayed here -->
+  </div>
+  
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<!-- STOCK MANAGEMENT PAGE -->
+<div class="container hidden" id="stockManagementPage">
+  <header>Manage Detergent Stock</header>
+  
+  <h2>Current Stock Levels</h2>
+  
+  <div class="stock-container">
+    <div class="stock-item">
+      <div class="stock-name">Ariel</div>
+      <div class="stock-amount" id="arielStockEdit">15</div>
+      <div class="stock-unit">units</div>
+      <div class="stock-controls">
+        <button class="stock-btn stock-decrease" onclick="updateStock('ariel', -1)">-</button>
+        <button class="stock-btn stock-increase" onclick="updateStock('ariel', 1)">+</button>
+      </div>
+    </div>
+    <div class="stock-item">
+      <div class="stock-name">Tide</div>
+      <div class="stock-amount" id="tideStockEdit">8</div>
+      <div class="stock-unit">units</div>
+      <div class="stock-controls">
+        <button class="stock-btn stock-decrease" onclick="updateStock('tide', -1)">-</button>
+        <button class="stock-btn stock-increase" onclick="updateStock('tide', 1)">+</button>
+      </div>
+    </div>
+    <div class="stock-item">
+      <div class="stock-name">Surf Excel</div>
+      <div class="stock-amount" id="surfStockEdit">22</div>
+      <div class="stock-unit">units</div>
+      <div class="stock-controls">
+        <button class="stock-btn stock-decrease" onclick="updateStock('surf', -1)">-</button>
+        <button class="stock-btn stock-increase" onclick="updateStock('surf', 1)">+</button>
+      </div>
+    </div>
+  </div>
+  
+  <button class="secondary" onclick="backToDashboard()">Back to Dashboard</button>
+</div>
+
+<script>
+let currentRole = null;
+let orders = [
+  { id: 1, name: "John Doe", room: "101", clothes: "5", wash: "Gentle Wash", detergent: "Ariel", status: "Pending" },
+  { id: 2, name: "Jane Smith", room: "205", clothes: "8", wash: "Daily Wash", detergent: "Tide", status: "Processing" },
+  { id: 3, name: "Robert Johnson", room: "312", clothes: "12", wash: "Hard Wash", detergent: "Surf Excel", status: "Completed" }
+];
+let complaints = [
+  { id: 1, orderId: "2", text: "My clothes came back with a stain that wasn't there before.", status: "Pending" }
+];
+let feedbacks = [
+  { id: 1, text: "Great service! My clothes always come back fresh and clean." }
+];
+let detergentStock = {
+  ariel: 15,
+  tide: 8,
+  surf: 22
+};
+
+function selectRole(role) {
+  document.querySelectorAll('.role-option').forEach(option => {
+    option.classList.remove('active');
+  });
+  
+  if (role === 'student') {
+    document.querySelectorAll('.role-option')[0].classList.add('active');
+    document.querySelector('.login-btn').textContent = 'Login as Student';
+  } else {
+    document.querySelectorAll('.role-option')[1].classList.add('active');
+    document.querySelector('.login-btn').textContent = 'Login as Admin';
+  }
+}
+
+function login() {
+  let roleElements = document.querySelectorAll('.role-option');
+  let role = 'student'; // default
+  
+  if (roleElements[1].classList.contains('active')) {
+    role = 'admin';
+  }
+  
+  currentRole = role;
+  document.querySelectorAll(".container, .login-container").forEach(div => div.classList.add("hidden"));
+  
+  if (role === "student") {
+    document.getElementById("studentDashboard").classList.remove("hidden");
+  } else if (role === "admin") {
+    document.getElementById("adminDashboard").classList.remove("hidden");
+    updateStockDisplay();
+  }
+}
+
+function logout() {
+  currentRole = null;
+  document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
+  document.getElementById("loginPage").classList.remove("hidden");
+}
+
+function showPage(pageId) {
+  document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
+  document.getElementById(pageId).classList.remove("hidden");
+  if (pageId === "statusPage") displayOrders();
+  if (pageId === "adminOrdersPage") displayAdminOrders();
+  if (pageId === "adminComplaintsPage") displayAdminComplaints();
+  if (pageId === "adminFeedbackPage") displayAdminFeedbacks();
+  if (pageId === "stockManagementPage") updateStockEditDisplay();
+}
+
+function backToDashboard() {
+  document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
+  if (currentRole === "student") {
+    document.getElementById("studentDashboard").classList.remove("hidden");
+  } else if (currentRole === "admin") {
+    document.getElementById("adminDashboard").classList.remove("hidden");
+    updateStockDisplay();
+  } else {
+    document.getElementById("loginPage").classList.remove("hidden");
+  }
+}
+
+/* === STUDENT FUNCTIONS === */
+function placeOrder() {
+  const name = document.getElementById("orderName").value.trim();
+  const room = document.getElementById("roomNumber").value.trim();
+  const clothes = document.getElementById("clothesCount").value;
+  const wash = document.getElementById("washType").value;
+  const detergent = document.getElementById("detergentType").value;
+
+  if (!name || !room || !clothes) {
+    alert("Please fill all details!");
+    return;
+  }
+
+  // Check detergent availability
+  const detergentKey = detergent.toLowerCase().replace(" ", "");
+  if (detergentStock[detergentKey] <= 0) {
+    alert(`Sorry, ${detergent} is out of stock. Please choose another detergent.`);
+    return;
+  }
+  
+  // Reduce stock
+  detergentStock[detergentKey]--;
+  updateStockDisplay();
+
+  const order = {
+    id: orders.length + 1,
+    name,
+    room,
+    clothes,
+    wash,
+    detergent,
+    status: "Pending"
+  };
+  orders.push(order);
+  alert("Order placed successfully!");
+  document.getElementById("orderName").value = "";
+  document.getElementById("roomNumber").value = "";
+  document.getElementById("clothesCount").value = "";
+  showPage("statusPage");
+  displayOrders();
+}
+
+function displayOrders() {
+  const orderList = document.getElementById("orderList");
+  orderList.innerHTML = orders.length
+    ? orders.map(o => {
+        let statusClass = "status-pending";
+        if (o.status === "Processing") statusClass = "status-processing";
+        if (o.status === "Completed") statusClass = "status-completed";
+        
+        return `
+        <div class="order-item ${o.status.toLowerCase()}">
+          <strong>Order #${o.id}</strong><br>
+          👤 ${o.name}, 🏠 Room ${o.room}<br>
+          👕 ${o.clothes} clothes<br>
+          💧 ${o.wash}, 🧴 ${o.detergent}<br>
+          <span class="status-badge ${statusClass}">${o.status}</span>
+        </div>`;
+      }).join("")
+    : "<p>No orders yet.</p>";
+}
+
+function submitComplaint() {
+  const id = document.getElementById("complaintOrderId").value.trim();
+  const text = document.getElementById("complaintText").value.trim();
+  if (!text) return alert("Please enter your complaint.");
+  complaints.push({ id: complaints.length + 1, orderId: id || "N/A", text, status: "Pending" });
+  alert("Complaint submitted successfully!");
+  document.getElementById("complaintOrderId").value = "";
+  document.getElementById("complaintText").value = "";
+  backToDashboard();
+}
+
+function submitFeedback() {
+  const text = document.getElementById("feedbackText").value.trim();
+  if (!text) return alert("Please enter feedback!");
+  feedbacks.push({ id: feedbacks.length + 1, text });
+  alert("Thank you for your feedback!");
+  document.getElementById("feedbackText").value = "";
+  backToDashboard();
+}
+
+/* === ADMIN FUNCTIONS === */
+function displayAdminOrders() {
+  const adminList = document.getElementById("adminOrderList");
+  adminList.innerHTML = orders.length
+    ? orders.map(o => {
+        let statusClass = "status-pending";
+        if (o.status === "Processing") statusClass = "status-processing";
+        if (o.status === "Completed") statusClass = "status-completed";
+        
+        return `
+        <div class="order-item ${o.status.toLowerCase()}">
+          <strong>Order #${o.id}</strong> 
+          <span class="status-badge ${statusClass}">${o.status}</span><br>
+          👤 ${o.name} | Room ${o.room}<br>
+          👕 ${o.clothes} | 💧 ${o.wash} | 🧴 ${o.detergent}
+        </div>`;
+      }).join("")
+    : "<p>No orders found.</p>";
+}
+
+function displayAdminComplaints() {
+  const adminList = document.getElementById("adminComplaintList");
+  adminList.innerHTML = complaints.length
+    ? complaints.map(c => `
+      <div class="complaint-item">
+        <strong>Complaint #${c.id}</strong><br>
+        Order ID: ${c.orderId}<br>
+        📝 ${c.text}<br>
+        ⚙ Status: ${c.status}
+      </div>`).join("")
+    : "<p>No complaints found.</p>";
+}
+
+function displayAdminFeedbacks() {
+  const adminList = document.getElementById("adminFeedbackList");
+  adminList.innerHTML = feedbacks.length
+    ? feedbacks.map(f => `
+      <div class="feedback-item">
+        💬 ${f.text}
+      </div>`).join("")
+    : "<p>No feedback found.</p>";
+}
+
+/* === STOCK MANAGEMENT FUNCTIONS === */
+function updateStockDisplay() {
+  document.getElementById('arielStock').textContent = detergentStock.ariel;
+  document.getElementById('tideStock').textContent = detergentStock.tide;
+  document.getElementById('surfStock').textContent = detergentStock.surf;
+  
+  // Add low stock warning
+  Object.keys(detergentStock).forEach(detergent => {
+    const element = document.getElementById(`${detergent}Stock`);
+    if (detergentStock[detergent] <= 5) {
+      element.classList.add('stock-low');
+    } else {
+      element.classList.remove('stock-low');
+    }
+  });
+}
+
+function updateStockEditDisplay() {
+  document.getElementById('arielStockEdit').textContent = detergentStock.ariel;
+  document.getElementById('tideStockEdit').textContent = detergentStock.tide;
+  document.getElementById('surfStockEdit').textContent = detergentStock.surf;
+  
+  // Add low stock warning
+  Object.keys(detergentStock).forEach(detergent => {
+    const element = document.getElementById(`${detergent}StockEdit`);
+    if (detergentStock[detergent] <= 5) {
+      element.classList.add('stock-low');
+    } else {
+      element.classList.remove('stock-low');
+    }
+  });
+}
+
+function updateStock(detergent, change) {
+  if (detergentStock[detergent] + change >= 0) {
+    detergentStock[detergent] += change;
+    updateStockEditDisplay();
+    updateStockDisplay();
+  }
+}
+</script>
+</body>
+</html>
